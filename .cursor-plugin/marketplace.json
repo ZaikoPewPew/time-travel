@@ -1,0 +1,17 @@
+{
+  "name": "time-travel",
+  "owner": {
+    "name": "ZaikoPewPew"
+  },
+  "metadata": {
+    "description": "Интерактивная историко-инженерная игра с путешествиями во времени.",
+    "pluginRoot": "plugins"
+  },
+  "plugins": [
+    {
+      "name": "time-travel",
+      "source": "time-travel",
+      "description": "Историко-инженерная игра: катастрофы прошлых эпох и оценка плана игрока."
+    }
+  ]
+}
