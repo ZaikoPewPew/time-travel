@@ -1,0 +1,11 @@
+{
+  "name": "time-travel",
+  "version": "1.0.0",
+  "description": "Интерактивная историко-инженерная игра с путешествиями во времени. Текст скилла можно скормить любой модели.",
+  "author": {
+    "name": "ZaikoPewPew"
+  },
+  "homepage": "https://github.com/ZaikoPewPew/time-travel",
+  "repository": "https://github.com/ZaikoPewPew/time-travel",
+  "keywords": ["game", "history", "engineering", "time-travel"]
+}

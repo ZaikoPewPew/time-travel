@@ -1,18 +1,15 @@
 # Time Travel
 
-Плагин Cursor со скиллом историко-инженерной игры. Агент погружает игрока в катастрофу прошлой эпохи и оценивает план по физике, материалам и исторической точности.
-
-## Подключение
-
-1. В Cursor откройте **Customize**.
-2. Добавьте marketplace через **From GitHub Repository**.
-3. Укажите URL: `https://github.com/ZaikoPewPew/time-travel`.
-4. Установите плагин `time-travel` в user scope, чтобы скилл был доступен во всех проектах.
-
-Документация: [Plugins](https://cursor.com/docs/plugins), [Agent Skills](https://cursor.com/docs/skills).
+Текст историко-инженерной игры. Модель не важна: скормил [SKILL.md](SKILL.md) — и играешь.
 
 ## Как играть
 
-В чате агента вызовите `/time-travel`. Скилл сразу откроет первую эпоху.
+1. Открой [SKILL.md](SKILL.md) и скопируй файл целиком.
+2. Вставь его системным промптом или первым сообщением в любой чат.
+3. Модель сама откроет первую эпоху. Дальше пиши свои действия в том же диалоге.
 
-Один вызов держит правила только на этом сообщении. Чтобы вести всю партию в одном режиме, выберите скилл как Custom Mode: Option+Enter на Mac или Alt+Enter на Windows.
+Подойдёт ChatGPT, Claude, Gemini, Grok, Cursor и любая другая модель, которой можно отдать длинную инструкцию.
+
+## Cursor
+
+Тот же файл можно не вставлять руками. В Customize добавь marketplace **From GitHub Repository** с адресом `https://github.com/ZaikoPewPew/time-travel` и установи плагин `time-travel`. В чате вызови `/time-travel`.

@@ -4,13 +4,12 @@
     "name": "ZaikoPewPew"
   },
   "metadata": {
-    "description": "Интерактивная историко-инженерная игра с путешествиями во времени.",
-    "pluginRoot": "plugins"
+    "description": "Интерактивная историко-инженерная игра с путешествиями во времени."
   },
   "plugins": [
     {
       "name": "time-travel",
-      "source": "time-travel",
+      "source": ".",
       "description": "Историко-инженерная игра: катастрофы прошлых эпох и оценка плана игрока."
     }
   ]
