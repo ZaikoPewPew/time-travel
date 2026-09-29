@@ -1,0 +1,14 @@
+{
+  "name": "time-travel",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node server/index.mjs"
+  },
+  "dependencies": {
+    "@cursor/sdk": "1.0.32"
+  }
+}

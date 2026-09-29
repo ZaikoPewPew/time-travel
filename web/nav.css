@@ -1,0 +1,290 @@
+.nav-root {
+  --nav-notch-overhang: 16px;
+  --nav-item-gap: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  font-family: var(--nav-font);
+}
+
+.nav-bar {
+  position: relative;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0 1.5rem 1rem;
+}
+
+.nav-shell {
+  contain: layout;
+  cursor: default;
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.nav-shell .glass-filter,
+.nav-shell .glass-overlay,
+.nav-shell .nav-notch-sheen {
+  clip-path: var(--nav-notch-clip);
+  -webkit-clip-path: var(--nav-notch-clip);
+}
+
+.glass-filter {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;
+  will-change: filter;
+  transform: translateZ(0);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  filter: url(#nav-liquid-glass);
+  animation: glass-filter-settle 0.22s ease-out;
+}
+
+@keyframes glass-filter-settle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.glass-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(var(--glass-tint-top) 0%, var(--glass-tint-bottom) 100%);
+}
+
+.nav-notch-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(-58deg, transparent 34%, var(--glass-sheen-streak) 47% 51%, transparent 62%),
+    linear-gradient(var(--glass-sheen-top) 0%, var(--glass-sheen-mid) 48%, transparent 100%);
+}
+
+.nav-notch-rim,
+.nav-notch-shadow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.nav-notch-rim {
+  z-index: 3;
+  clip-path: var(--nav-notch-clip);
+  -webkit-clip-path: var(--nav-notch-clip);
+}
+
+.nav-notch-shadow {
+  z-index: 0;
+}
+
+.glass-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 1rem calc(1rem + var(--nav-notch-overhang));
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-item-gap);
+  width: 100%;
+}
+
+/* Centres the logo in the rounded end, like the CTA pill on the right: (38px CTA height - 24px logo) / 2. */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 7px;
+  color: var(--glass-text);
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: rotate(45deg);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-item-gap);
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--glass-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--glass-text-dim);
+}
+
+.nav-chevron {
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  color: var(--glass-text-dim);
+  transition: transform 0.2s;
+}
+
+.nav-menu-toggle[aria-expanded="true"] .nav-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-download-cta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 0;
+  font-family: inherit;
+  color: var(--glass-text);
+  background-color: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(210, 216, 224, 0.12);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.32s, opacity 0.32s;
+}
+
+.nav-download-cta:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+}
+
+.nav-download-cta:disabled {
+  opacity: 0.45;
+  cursor: default;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 8px);
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(-50%, -6px, 0) scale(0.98);
+  transform-origin: top center;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0s 0.2s;
+}
+
+.nav-dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate3d(-50%, 0, 0) scale(1);
+  transition-delay: 0s;
+}
+
+.nav-dropdown-panel {
+  position: relative;
+  width: 292px;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(210, 216, 224, 0.08);
+  background: linear-gradient(180deg, rgba(10, 11, 14, 0.96) 0%, rgba(6, 7, 9, 0.98) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(16px) saturate(120%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(210, 216, 224, 0.05);
+  contain: paint;
+}
+
+.nav-dropdown-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(210, 216, 224, 0.1), transparent);
+}
+
+.nav-dropdown-list {
+  position: relative;
+  z-index: 1;
+  padding: 8px;
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 18px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.nav-dropdown-item:hover,
+.nav-dropdown-item:focus-visible {
+  background: rgba(210, 216, 224, 0.06);
+}
+
+.nav-dropdown-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--glass-text);
+}
+
+.nav-dropdown-desc {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.375;
+  color: var(--glass-text-dim);
+}
+
+@media (max-width: 767px) {
+  .nav-link:not(.nav-task) {
+    display: none;
+  }
+}
+
+@supports (-webkit-hyphens: none) {
+  .nav-shell .glass-filter {
+    -webkit-backdrop-filter: blur(20px) saturate(var(--glass-saturate));
+    backdrop-filter: blur(20px) saturate(var(--glass-saturate));
+    filter: none !important;
+  }
+
+  .nav-shell .glass-overlay {
+    background: linear-gradient(var(--glass-tint-fallback-top) 0%, var(--glass-tint-fallback-bottom) 100%);
+  }
+}
