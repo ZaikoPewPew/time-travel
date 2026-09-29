@@ -272,7 +272,8 @@
 }
 
 @media (max-width: 767px) {
-  .nav-link:not(.nav-task) {
+  .nav-menu-toggle,
+  .nav-task {
     display: none;
   }
 }

@@ -543,11 +543,21 @@ function ask(text) {
     .finally(() => finishAssistant(token, messageId));
 }
 
+const INPUT_MAX_PX = 160;
+
+function fitInput() {
+  input.style.height = "0px";
+  const next = input.scrollHeight;
+  input.style.height = `${Math.min(next, INPUT_MAX_PX)}px`;
+  input.style.overflowY = next > INPUT_MAX_PX ? "auto" : "hidden";
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const text = input.value.trim();
   if (!text || busy) return;
   input.value = "";
+  fitInput();
   appendTurn({ role: "user", text });
   if (!sessionId) {
     appendTurn({ role: "assistant", text: "Раунд не открыт. Запустите эпоху ещё раз." });
@@ -556,12 +566,16 @@ form.addEventListener("submit", (event) => {
   ask(text);
 });
 
+input.addEventListener("input", fitInput);
+
 input.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
     form.requestSubmit();
   }
 });
+
+fitInput();
 
 new ResizeObserver(scheduleLayout).observe(log);
 new ResizeObserver(scheduleLayout).observe(viewport);

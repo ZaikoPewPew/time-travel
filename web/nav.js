@@ -91,8 +91,15 @@ function scheduleMenuClose() {
   menuCloseTimer = setTimeout(() => setMenuOpen(false), MENU_CLOSE_DELAY_MS);
 }
 
+const compactNav = window.matchMedia("(max-width: 767px)");
+
+function closeMenuIfCompact() {
+  if (compactNav.matches) setMenuOpen(false);
+}
+
 layoutNotch();
 new ResizeObserver(layoutNotch).observe(shell);
+compactNav.addEventListener("change", closeMenuIfCompact);
 
 menuToggle.addEventListener("click", () => setMenuOpen(true));
 [menuToggle, dropdown].forEach((el) => {
