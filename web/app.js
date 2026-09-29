@@ -34,7 +34,7 @@ const caption = document.querySelector(".caption");
 const launchButton = document.querySelector(".nav-launch");
 const launchLabel = launchButton.querySelector(".nav-launch-label");
 
-const FLIP_CLICK_SRC = "/flip_sound.wav";
+const FLIP_CLICK_SRC = "../flip_sound.wav";
 const MIN_CLICK_GAP_MS = 36;
 
 const cards = [];
